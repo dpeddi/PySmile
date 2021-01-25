@@ -341,6 +341,8 @@ def decode(string):
                     log.error('Found end-of-String marker (0xFC) in value mode')
                 elif byt == INT_MISC_BINARY_RAW:
                     log.warn('Not Yet Implemented: Raw Binary Data')
+                    smile_value_length = (byt & 0x7F) + 33
+                    state.index += smile_value_length
                 elif byt == BYTE_MARKER_END_OF_CONTENT:
                     log.debug('Token: End Marker')
                     state.mode = DecodeMode.DONE
